@@ -8,6 +8,10 @@ Methods:
 * Lucas & Kanade
 * Lucas & Kanade Pyramidal
 
+#### Result Example
+
+![Result example](data/lkc2f/flow.png)
+
 ### References
 * [B.K.P. Horn and B.G. Schunck, "Determining optical flow." Artificial Intelligence, vol 17, pp 185–203, 1981](http://dspace.mit.edu/handle/1721.1/6337)
 * [B. D. Lucas and T. Kanade, "An iterative image registration technique with an application to stereo vision". Proceedings of Imaging Understanding Workshop, pages 121--130, 1981]( http://www-cse.ucsd.edu/classes/sp02/cse252/lucaskanade81.pdf)
