@@ -1,5 +1,5 @@
 /*!
-  \file src/LucasKanade.h
+  \file src/of/LucasKanade.h
 
   \brief This class implements the Lucas & Kanade method of estimating optical flow.
          Reference: B. D. Lucas and T. Kanade (1981), An iterative image registration technique with an application to stereo vision.
@@ -21,7 +21,7 @@ namespace of
 
     \brief This class implements the Lucas & Kanade method of estimating optical flow.
   */
-  class LucasKanade : public OpticalFlow
+  class OFEXPORT LucasKanade : public OpticalFlow
   {
     public:
 

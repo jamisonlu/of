@@ -1,5 +1,5 @@
 /*!
-  \file src/Pyramid.cpp
+  \file src/of/Pyramid.cpp
   \brief This class represents an image hierarchical pyramid.
   \author Douglas Uba
 */

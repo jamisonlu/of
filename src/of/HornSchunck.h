@@ -1,5 +1,5 @@
 /*!
-  \file src/HornSchunck.h
+  \file src/of/HornSchunck.h
 
   \brief This class implements the Horn & Schunck method for estimating optical flow.
          Reference: B.K.P. Horn and B.G. Schunck, "Determining optical flow." Artificial Intelligence, vol 17, pp 185–203, 1981
@@ -20,7 +20,7 @@ namespace of
 
     \brief This class implements the Horn & Schunck method of estimating optical flow.
   */
-  class HornSchunck : public OpticalFlow
+  class OFEXPORT HornSchunck : public OpticalFlow
   {
     public:
 

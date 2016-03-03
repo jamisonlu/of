@@ -1,5 +1,5 @@
 /*!
-  \file src/HornSchunck.h
+  \file src/of/HornSchunck.h
 
   \brief This class implements the Horn & Schunck method for estimating optical flow.
          Reference: B.K.P. Horn and B.G. Schunck, "Determining optical flow." Artificial Intelligence, vol 17, pp 185–203, 1981
@@ -16,7 +16,7 @@ of::HornSchunck::HornSchunck(Image* a, Image* b)
   : OpticalFlow(a, b),
     m_alpha(15),
     m_maxIterations(std::string::npos),
-    m_e(DEFAULT_HS_AUTO_STOP_THRESHOLD)
+    m_e(OF_DEFAULT_HS_AUTO_STOP_THRESHOLD)
 {
 }
 

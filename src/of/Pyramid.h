@@ -1,11 +1,13 @@
 /*!
-  \file src/Pyramid.h
+  \file src/of/Pyramid.h
   \brief This class represents an image hierarchical pyramid.
   \author Douglas Uba
 */
 
 #ifndef __OF_INTERNAL_PYRAMID_H
 #define __OF_INTERNAL_PYRAMID_H
+
+#include "Config.h"
 
 // STL
 #include <vector>
@@ -21,7 +23,7 @@ namespace of
 
     \brief This class represents an image hierarchical pyramid.
   */
-  class Pyramid
+  class OFEXPORT Pyramid
   {
     public:
 

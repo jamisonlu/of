@@ -1,13 +1,14 @@
 /*!
-  \file src/Main.cpp
-  \brief Optical Flow Algorithms - Example.
+  \file example/of-example.cpp
+  \brief Optical Flow Algorithms Example.
   \author Douglas Uba
 */
 
-#include "HornSchunck.h"
-#include "Image.h"
-#include "LucasKanade.h"
-#include "LucasKanadeC2F.h"
+// Optical Flow
+#include <of/HornSchunck.h>
+#include <of/Image.h>
+#include <of/LucasKanade.h>
+#include <of/LucasKanadeC2F.h>
 
 // GDAL/OGR
 #include <gdal_priv.h>

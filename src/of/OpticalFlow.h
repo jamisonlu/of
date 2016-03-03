@@ -1,11 +1,13 @@
 /*!
-  \file src/OpticalFlow.h
+  \file src/of/OpticalFlow.h
   \brief Base class for optical flow algorithms.
   \author Douglas Uba
 */
 
 #ifndef __OF_INTERNAL_OPTICAL_FLOW_H
 #define __OF_INTERNAL_OPTICAL_FLOW_H
+
+#include "Config.h"
 
 // STL
 #include <string>
@@ -20,7 +22,7 @@ namespace of
 
     \brief Base class for optical flow algorithms.
   */
-  class OpticalFlow
+  class OFEXPORT OpticalFlow
   {
     public:
 

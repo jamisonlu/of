@@ -1,5 +1,5 @@
 /*!
-  \file src/Image.cpp
+  \file src/of/Image.cpp
   \brief This class represents a single-band digital image.
   \author Douglas Uba
 */

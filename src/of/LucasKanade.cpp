@@ -1,5 +1,5 @@
 /*!
-  \file src/LucasKanade.cpp
+  \file src/of/LucasKanade.cpp
 
   \brief This class implements the Lucas & Kanade method of estimating optical flow.
          Reference: B. D. Lucas and T. Kanade (1981), An iterative image registration technique with an application to stereo vision.
@@ -15,7 +15,7 @@
 
 of::LucasKanade::LucasKanade(Image* a, Image* b)
   : OpticalFlow(a, b),
-    m_ksize(DEFAULT_LK_KERNEL_SIZE),
+    m_ksize(OF_DEFAULT_LK_KERNEL_SIZE),
     m_maxIterations(1)
 {
 }

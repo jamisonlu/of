@@ -1,5 +1,5 @@
 /*!
-  \file src/OpticalFlow.cpp
+  \file src/of/OpticalFlow.cpp
   \brief Base class for optical flow algorithms.
   \author Douglas Uba
 */

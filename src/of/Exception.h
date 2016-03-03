@@ -1,11 +1,13 @@
 /*!
-  \file src/Exception.h
+  \file src/of/Exception.h
   \brief This class is designed to declare objects to be thrown as exceptions.
   \author Douglas Uba
 */
 
 #ifndef __OF_INTERNAL_EXCEPTION_H
 #define __OF_INTERNAL_EXCEPTION_H
+
+#include "Config.h"
 
 // STL
 #include <exception>
@@ -20,7 +22,7 @@ namespace of
 
       \note Exception class is a subclass of std::exception.
     */
-    class Exception : public virtual std::exception
+    class OFEXPORT Exception : public virtual std::exception
     {
       public:
 

@@ -1,5 +1,5 @@
 /*!
-  \file src/LucasKanade.cpp
+  \file src/of/LucasKanade.cpp
 
   \brief This class implements the Lucas & Kanade method of estimating optical flow with pyramids.
          Reference: Bouguet, J.-Y. (2000), Pyramidal Implementation of the Lucas Kanade Feature Tracker Description of the algorithm,
@@ -20,7 +20,7 @@
 
 of::LucasKanadeC2F::LucasKanadeC2F(Image* a, Image* b)
   : OpticalFlow(a, b),
-    m_ksize(DEFAULT_LK_KERNEL_SIZE),
+    m_ksize(OF_DEFAULT_LK_KERNEL_SIZE),
     m_maxIterations(1)
 {
   m_nLevels = Pyramid::getMaxNumberOfLevels(a);

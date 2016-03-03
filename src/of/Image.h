@@ -1,11 +1,13 @@
 /*!
-  \file src/Image.h
+  \file src/of/Image.h
   \brief This class represents a single-band digital image.
   \author Douglas Uba
 */
 
 #ifndef __OF_INTERNAL_IMAGE_H
 #define __OF_INTERNAL_IMAGE_H
+
+#include "Config.h"
 
 // STL
 #include <limits>
@@ -20,7 +22,7 @@ namespace of
 
     \brief Simple struct that defines the size of a two-dimensional image.
   */
-  struct Size
+  struct OFEXPORT Size
   {
     /*! \brief Default constructor. */
     Size() : nlines(0), ncols(0), npixels(0) {}
@@ -64,7 +66,7 @@ namespace of
     std::size_t npixels; //!< Number of pixels (nlines * ncols).
   };
 
-  struct Kernel
+  struct OFEXPORT Kernel
   {
     /*! \brief Default constructor. */
     Kernel()
@@ -155,7 +157,7 @@ namespace of
            Basically encapsulates a buffer of values and
            provides access methods to pixels.
   */
-  class Image
+  class OFEXPORT Image
   {
     public:
 

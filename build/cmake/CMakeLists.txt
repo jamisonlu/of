@@ -1,16 +1,16 @@
-project(of)
+#  Description: Main CMake script for the Optical Flow build system.
+#  Author: Douglas Uba
 
 cmake_minimum_required(VERSION 2.8)
 
-find_package(GDAL REQUIRED)
+project(of)
 
-include_directories(${GDAL_INCLUDE_DIR})
+set(OF_ABSOLUTE_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
-set(SRC_ABSOLUTE_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../src)
+option(OF_BUILD_EXAMPLE "Build Optical Flow example?" ON)
 
-file(GLOB OF_SRC_FILES ${SRC_ABSOLUTE_ROOT_DIR}/*.cpp)
-file(GLOB OF_HDR_FILES ${SRC_ABSOLUTE_ROOT_DIR}/*.h)
+add_subdirectory(of)
 
-add_executable(${PROJECT_NAME} ${OF_SRC_FILES} ${OF_HDR_FILES} )
-
-target_link_libraries(${PROJECT_NAME} ${GDAL_LIBRARY})
+if(OF_BUILD_EXAMPLE)
+  add_subdirectory(example)
+endif()

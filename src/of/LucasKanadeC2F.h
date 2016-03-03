@@ -1,5 +1,5 @@
 /*!
-  \file src/LucasKanadeC2F.h
+  \file src/of/LucasKanadeC2F.h
 
   \brief This class implements the Lucas & Kanade method of estimating optical flow with pyramids.
          Reference: Bouguet, J.-Y. (2000), Pyramidal Implementation of the Lucas Kanade Feature Tracker Description of the algorithm,
@@ -24,7 +24,7 @@ namespace of
 
     \brief This class implements the Lucas & Kanade method of estimating optical flow with pyramids.
   */
-  class LucasKanadeC2F : public OpticalFlow
+  class OFEXPORT LucasKanadeC2F : public OpticalFlow
   {
     public:
 

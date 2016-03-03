@@ -1,5 +1,5 @@
 /*!
-  \file src/Exception.h
+  \file src/of/Exception.h
   \brief This class is designed to declare objects to be thrown as exceptions.
   \author Douglas Uba
 */
