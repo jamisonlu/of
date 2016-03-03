@@ -8,6 +8,32 @@ Methods:
 * Lucas & Kanade
 * Lucas & Kanade Pyramidal
 
+#### Usage Example
+```cpp
+#include <of/LucasKanadeC2F.h>
+
+double* buffa, buffb; // <- Read images values
+
+// Encapsulate buffers
+of::Image* imga = new of::Image(buffa, nlines, ncols);
+of::Image* imgb = new of::Image(buffb, nlines, ncols);
+
+// Create specific method implementation
+of::OpticalFlow* of = new of::LucasKanadeC2F(imga, imgb);
+
+// Run!
+of->compute();
+
+// Get flow vectors coordinates
+of::Image* u = of->getU();
+of::Image* v = of->getV();
+
+// Kill 'Em All
+delete of;
+delete imga;
+delete imgb;
+```
+
 #### Result Example
 
 ![Result example](https://github.com/uba/of/wiki/images/lkc2f-flow.png)
