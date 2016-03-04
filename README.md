@@ -24,7 +24,10 @@ of::OpticalFlow* of = new of::LucasKanadeC2F(imga, imgb);
 // Run!
 of->compute();
 
-// Get flow vectors coordinates
+// Can export (u,v) to Optical Flow Middlebury (.flo) file format
+of->save("uv.flo");
+
+// Get (u, v) coordinates
 of::Image* u = of->getU();
 of::Image* v = of->getV();
 
