@@ -5,6 +5,7 @@
 */
 
 // Optical Flow
+#include <of/Exception.h>
 #include <of/HornSchunck.h>
 #include <of/Image.h>
 #include <of/LucasKanade.h>
@@ -57,55 +58,72 @@ void ExportResults(of::OpticalFlow* of, const std::string& dir)
   GDALClose(error);
 }
 
-int main()
+int main(int /*argc*/, char** /*argv*/)
 {
   std::cout << ":: Optical Flow Algorithms ::" << std::endl;
 
-  // GDAL initialization
-  GDALAllRegister();
+  try
+  {
+    // GDAL initialization
+    GDALAllRegister();
 
-  std::string basedir = "D:/development/cpp/of/data/input/";
+    std::string basedir = "D:/development/cpp/of/data/input/";
 
-  // Open images
-  GDALDataset* gDatasetA = (GDALDataset*)GDALOpen((basedir + "satellitea.jpg").c_str(), GA_ReadOnly);
-  GDALDataset* gDatasetB = (GDALDataset*)GDALOpen((basedir + "satelliteb.jpg").c_str(), GA_ReadOnly);
+    // Open images
+    GDALDataset* gDatasetA = (GDALDataset*)GDALOpen((basedir + "satellitea.jpg").c_str(), GA_ReadOnly);
+    GDALDataset* gDatasetB = (GDALDataset*)GDALOpen((basedir + "satelliteb.jpg").c_str(), GA_ReadOnly);
 
-  // Retrieve dimensions
-  std::size_t nlines = gDatasetA->GetRasterYSize();
-  std::size_t ncols = gDatasetA->GetRasterXSize();
-  std::size_t size = nlines * ncols;
+    // Retrieve dimensions
+    std::size_t nlines = gDatasetA->GetRasterYSize();
+    std::size_t ncols = gDatasetA->GetRasterXSize();
+    std::size_t size = nlines * ncols;
 
-  // Read buffers
-  double* buffera = new double[size];
-  double* bufferb = new double[size];
-  gDatasetA->GetRasterBand(1)->RasterIO(GF_Read, 0, 0, ncols, nlines, buffera, ncols, nlines, GDT_Float64, 0, 0);
-  gDatasetB->GetRasterBand(1)->RasterIO(GF_Read, 0, 0, ncols, nlines, bufferb, ncols, nlines, GDT_Float64, 0, 0);
+    // Read buffers
+    double* buffera = new double[size];
+    double* bufferb = new double[size];
+    gDatasetA->GetRasterBand(1)->RasterIO(GF_Read, 0, 0, ncols, nlines, buffera, ncols, nlines, GDT_Float64, 0, 0);
+    gDatasetB->GetRasterBand(1)->RasterIO(GF_Read, 0, 0, ncols, nlines, bufferb, ncols, nlines, GDT_Float64, 0, 0);
 
-  // Close! GDAL is used only to read image data
-  GDALClose(gDatasetA);
-  GDALClose(gDatasetB);
+    // Close! GDAL is used only to read image data
+    GDALClose(gDatasetA);
+    GDALClose(gDatasetB);
 
-  // Encapsulate buffers
-  of::Image* imga = new of::Image(buffera, nlines, ncols);
-  of::Image* imgb = new of::Image(bufferb, nlines, ncols);
+    // Encapsulate buffers
+    of::Image* imga = new of::Image(buffera, nlines, ncols);
+    of::Image* imgb = new of::Image(bufferb, nlines, ncols);
 
-  //of::HornSchunck hs(imga, imgb);
-  //hs.compute();
-  //ExportResults(&hs, basedir + "hs/");
+    std::cout << "Processing... ";
 
-  //of::LucasKanade lk(imga, imgb);
-  //lk.compute();
-  //ExportResults(&lk, basedir + "lk/");
+    //of::HornSchunck hs(imga, imgb);
+    //hs.compute();
+    //ExportResults(&hs, basedir + "hs/");
 
-  of::LucasKanadeC2F lkc2f(imga, imgb);
-  lkc2f.compute();
-  ExportResults(&lkc2f, basedir + "lkc2f/");
+    //of::LucasKanade lk(imga, imgb);
+    //lk.compute();
+    //ExportResults(&lk, basedir + "lk/");
 
-  delete imga;
-  delete imgb;
+    of::LucasKanadeC2F lkc2f(imga, imgb);
+    lkc2f.compute();
+    ExportResults(&lkc2f, basedir + "lkc2f/");
 
-  std::cout << "Press enter to exit...";
-  std::cin.get();
+    std::cout << "done!" << std::endl;
 
-  return 0;
+    delete imga;
+    delete imgb;
+
+    std::cout << "Press enter to exit...";
+    std::cin.get();
+  }
+  catch(const of::Exception& e)
+  {
+    std::cerr << std::endl << "An exception has occurred: " << e.what() << std::endl;
+    return EXIT_FAILURE;
+  }
+  catch(...)
+  {
+    std::cerr << std::endl << "An unexpected exception has occurred!" << std::endl;
+    return EXIT_FAILURE;
+  }
+
+  return EXIT_SUCCESS;
 }
