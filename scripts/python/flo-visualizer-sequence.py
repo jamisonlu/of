@@ -49,8 +49,10 @@ def readFLO(path):
 w=0
 h=0
 
+dataset = 'Basketball'
+
 # Input images
-imgDir = '../../data/eval-data-gray/Backyard/'
+imgDir = '../../data/eval-data-gray/' + dataset + '/'
 imgFormat = 'png'
 imgPaths = glob.glob(imgDir + "*." + imgFormat)
 
@@ -60,7 +62,7 @@ for i in xrange(0, len(imgPaths)):
     imgs.append(mpimg.imread(imgPaths[i]))
 
 # Flow vector files
-uvDir='../../data/eval-data-gray/Backyard/results/'
+uvDir='../../data/eval-data-gray/' + dataset + '/'
 uvPaths= glob.glob(uvDir + "*.flo")
 
 # Read flow vectors 
@@ -93,7 +95,7 @@ for i in xrange(0, len(uvPaths)):
     vs[i] = vs[i][::n,::n]
     
 # Plot first vectors
-Q = plt.quiver(x, y, us[0], vs[0], pivot='mid', color='red', \
+Q = plt.quiver(x, y, us[0], vs[0], pivot='mid', color='dodgerblue', \
                angles='xy', headlength=4, antialiased=True, alpha=0.8)
            
 # Animation loop
@@ -107,7 +109,7 @@ def updatefig(*args):
         i = 1
     return im
     
-anim = animation.FuncAnimation(fig, updatefig, interval=200, blit=False)
-anim.save('animation.mp4')
+anim = animation.FuncAnimation(fig, updatefig, interval=300, blit=False, frames=len(imgs))
+anim.save(dataset + '.mp4', bitrate=6000)
 
 plt.show()
