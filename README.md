@@ -38,8 +38,8 @@ delete imgb;
 ```
 
 #### Result Examples
-![Result example](https://github.com/uba/of/wiki/images/lkc2f-flow.png)
 ![Result example](https://github.com/uba/of/wiki/images/lkc2f-animation-Backyard.gif)
+![Result example](https://github.com/uba/of/wiki/images/lkc2f-animation-Evergreen.gif)
 
 ### References
 * [B.K.P. Horn and B.G. Schunck, "Determining optical flow." Artificial Intelligence, vol 17, pp 185–203, 1981](http://dspace.mit.edu/handle/1721.1/6337)
