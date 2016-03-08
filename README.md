@@ -40,6 +40,7 @@ delete imgb;
 #### Result Examples
 ![Result example](https://github.com/uba/of/wiki/images/lkc2f-animation-Basketball.gif)
 ![Result example](https://github.com/uba/of/wiki/images/lkc2f-animation-Backyard.gif)
+![Result example](https://github.com/uba/of/wiki/images/lkc2f-animation-Beanbags.gif)
 ![Result example](https://github.com/uba/of/wiki/images/lkc2f-animation-Evergreen.gif)
 ![Result example](https://github.com/uba/of/wiki/images/lkc2f-animation-Mequon.gif)
 
