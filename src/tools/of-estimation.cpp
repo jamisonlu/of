@@ -7,6 +7,8 @@
 // Optical Flow
 #include "../of/Exception.h"
 #include "../of/Image.h"
+#include "../of/HornSchunck.h"
+#include "../of/LucasKanade.h"
 #include "../of/LucasKanadeC2F.h"
 
 // GDAL/OGR
@@ -41,6 +43,11 @@ std::string Convert2String(std::size_t i)
   return strs.str();
 }
 
+// Available methods
+const std::string OF_HS_METHOD = "HS";
+const std::string OF_LK_METHOD = "LK";
+const std::string OF_LKC2F_METHOD = "LKC2F";
+
 int main(int argc, char** argv)
 {
   try
@@ -51,6 +58,16 @@ int main(int argc, char** argv)
     // Define images path argument
     TCLAP::ValueArg<std::string> imagesPathArg("i", "images", "Paths of consecutive images comma separated. e.g. path-1,path-2,path-n", true, "", "string");
 
+    // Define method options
+    std::vector<std::string> methods;
+    methods.push_back(OF_HS_METHOD);
+    methods.push_back(OF_LK_METHOD);
+    methods.push_back(OF_LKC2F_METHOD);
+    TCLAP::ValuesConstraint<std::string> allowedMethods(methods);
+
+    // Define method argument
+    TCLAP::ValueArg<std::string> methodArg("m", "method", "The method that will be used", false, OF_LKC2F_METHOD, &allowedMethods);
+
     // Define output directory argument
     TCLAP::ValueArg<std::string> outputDirArg("o", "output", "Path to output directory that will contain the results. \
                                                               Each output file (.flo) contains the coordinates of flow vectors at instant t+1",
@@ -58,6 +75,7 @@ int main(int argc, char** argv)
 
     // Add the arguments
     cmd.add(outputDirArg);
+    cmd.add(methodArg);
     cmd.add(imagesPathArg);
 
     // Parse the given input parameters from agv array
@@ -76,6 +94,8 @@ int main(int argc, char** argv)
     GDALAllRegister();
 
     std::cout << "Processing..." << std::endl;
+
+    std::string method = methodArg.getValue();
 
     for(std::size_t i = 0; i < paths.size() - 1; ++i) // for each image pair
     {
@@ -105,8 +125,16 @@ int main(int argc, char** argv)
       of::Image* imga = new of::Image(buffera, nlines, ncols);
       of::Image* imgb = new of::Image(bufferb, nlines, ncols);
 
+      // Create specific method
+      of::OpticalFlow* of = 0;
+      if(method == OF_HS_METHOD)
+        of = new of::HornSchunck(imga, imgb);
+      else if(method == OF_LK_METHOD)
+        of = new of::LucasKanade(imga, imgb);
+      else // OF_LKC2F_METHOD
+        of = new of::LucasKanadeC2F(imga, imgb);
+      
       // Execute!
-      of::OpticalFlow* of = new of::LucasKanadeC2F(imga, imgb);
       of->compute();
 
       std::string uvfile = outputDirArg.getValue() + "uv-" + Convert2String(i + 1) + ".flo";
