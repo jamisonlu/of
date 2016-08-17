@@ -49,11 +49,11 @@ def readFLO(path):
 w=0
 h=0
 
-dataset = 'Basketball'
+dataset = 'Goes14'
 
 # Input images
 imgDir = '../../data/eval-data-gray/' + dataset + '/'
-imgFormat = 'png'
+imgFormat = 'jpg'
 imgPaths = glob.glob(imgDir + "*." + imgFormat)
 
 # Read images
@@ -83,7 +83,7 @@ fig = plt.figure()
 im = plt.imshow(imgs[0], cmap='gray')
 
 # Reduce factor for vectors
-n=9
+n=8
 
 # Reduce grid
 x = x[::n,::n]
